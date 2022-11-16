@@ -10,7 +10,12 @@ class Other extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(),
+      theme: ThemeData(primarySwatch: Colors.pink),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Utility"),
+        ),
+      ),
     );
   }
 }

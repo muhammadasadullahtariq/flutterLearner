@@ -1,14 +1,32 @@
+// ignore_for_file: prefer_const_constructors, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutterlearner/utility.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutterlearner/textField.dart';
+import 'package:flutterlearner/widgets/textField.dart';
+import 'dart:developer';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final _formKey = GlobalKey<FormState>();
+
+  moveToNextScreen(BuildContext context) {
+    if (_formKey.currentState!.validate()) {
+      log("here am i");
+      Navigator.push(
+         context, MaterialPageRoute(builder: ((context) => const Other())));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,54 +58,64 @@ class MyApp extends StatelessWidget {
                 child: Text("SignIn",
                     style: GoogleFonts.roboto(
                       textStyle: TextStyle(
-                        color: Colors.grey[300],
-                        fontSize: 46,
-                      ),
+                          color: Colors.grey[300],
+                          fontSize: 46,
+                          fontWeight: FontWeight.w800),
                     )),
               ),
               const SizedBox(
-                height: 30,
+                height: 60,
               ),
-              const TextFieldDynom(
-                hintText: "Enter Email",
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              const TextFieldDynom(
-                hintText: "Enter password",
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Center(
-                child: Builder(builder: (context) {
-                  return ElevatedButton(
-                    onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) => const Other()))),
-                    style: ButtonStyle(
-                        shape: MaterialStateProperty.all(
-                            const RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(30))))),
-                    child: Builder(
-                      builder: (context) {
-                        return Container(
-                          width: MediaQuery.of(context).size.width * 0.6,
-                          height: 46,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: const Center(
-                            child: Text("Login"),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFieldDynom(
+                      hintText: "Enter Email",
+                      prefixIconConstraints: Icon(Icons.person),
+                      parametersValidate: "Enter email",
+                      validatorFunction: commonValidation,
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    TextFieldDynom(
+                      hintText: "Enter password",
+                      prefixIconConstraints: Icon(Icons.password),
+                      parametersValidate: "Enter password",
+                      validatorFunction: commonValidation,
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    Center(
+                      child: Builder(builder: (context) {
+                        return ElevatedButton(
+                          onPressed: (() => moveToNextScreen(context)),
+                          style: ButtonStyle(
+                              shape: MaterialStateProperty.all(
+                                  const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(30))))),
+                          child: Builder(
+                            builder: (context) {
+                              return Container(
+                                width: MediaQuery.of(context).size.width * 0.6,
+                                height: 46,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                child: const Center(
+                                  child: Text("Login"),
+                                ),
+                              );
+                            },
                           ),
                         );
-                      },
+                      }),
                     ),
-                  );
-                }),
+                  ],
+                ),
               ),
             ],
           ),
