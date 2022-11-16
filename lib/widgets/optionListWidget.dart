@@ -11,13 +11,17 @@ class optionListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: .5),
+      color: Colors.white,
       child: ListTile(
         leading:
             Icon(IconData(optionModel.iconName, fontFamily: 'MaterialIcons')),
         title: Text(optionModel.heading),
-        trailing: Icon(Icons.skip_next),
+        trailing: Icon(
+          Icons.skip_next,
+          color: Colors.grey[100],
+        ),
       ),
     );
   }

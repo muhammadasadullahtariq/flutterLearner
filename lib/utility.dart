@@ -12,19 +12,20 @@ class Other extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dumyList = List.generate(20,
-        ((index) => optionsModel(iconName: 0xf05b1, heading: "Card Service")));
+        ((index) => optionsModel(iconName: 0xf04b7, heading: "Card Service")));
 
-    return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.pink),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Utility"),
-        ),
-        body: ListView.builder(
-            itemCount: dumyList.length,
-            itemBuilder: ((context, index) =>
-                optionListWidget(optionModel: dumyList[index]))),
+    return Scaffold(
+      backgroundColor: Colors.grey[100],
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.blueAccent),
+        title: Text("Utility"),
+        backgroundColor: Colors.white,
+        titleTextStyle: TextStyle(color: Colors.blueAccent),
       ),
+      body: ListView.builder(
+          itemCount: dumyList.length,
+          itemBuilder: ((context, index) =>
+              optionListWidget(optionModel: dumyList[index]))),
     );
   }
 }
