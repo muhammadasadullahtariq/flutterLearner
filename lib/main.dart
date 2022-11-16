@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
               Builder(
                 builder: (context) {
                   return IconButton(
-                      icon: Icon(Icons.menu, color: Colors.red),
+                      icon: const Icon(Icons.menu, color: Colors.red),
                       onPressed: () => Scaffold.of(context)
                           .openDrawer() // set your color here
                       );
@@ -48,41 +48,46 @@ class MyApp extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              TextFieldDynom(
+              const TextFieldDynom(
                 hintText: "Enter Email",
               ),
               const SizedBox(
                 height: 30,
               ),
-              TextFieldDynom(
+              const TextFieldDynom(
                 hintText: "Enter password",
               ),
               const SizedBox(
                 height: 30,
               ),
               Center(
-                child: ElevatedButton(
-                  onPressed: () => print("Button pressed"),
-                  style: ButtonStyle(
-                      shape: MaterialStateProperty.all(
-                          const RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30))))),
-                  child: Builder(
-                    builder: (context) {
-                      return Container(
-                        width: MediaQuery.of(context).size.width * 0.6,
-                        height: 46,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: const Center(
-                          child: Text("Login"),
-                        ),
-                      );
-                    },
-                  ),
-                ),
+                child: Builder(builder: (context) {
+                  return ElevatedButton(
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => const Other()))),
+                    style: ButtonStyle(
+                        shape: MaterialStateProperty.all(
+                            const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(30))))),
+                    child: Builder(
+                      builder: (context) {
+                        return Container(
+                          width: MediaQuery.of(context).size.width * 0.6,
+                          height: 46,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          child: const Center(
+                            child: Text("Login"),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                }),
               ),
             ],
           ),

@@ -1,52 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:flutterlearner/utility.dart';
-void main() => runApp(const TextFieldWidget(
+
+void main() => runApp(const TextFieldDynom(
       hintText: '',
     ));
 
-class TextFieldWidget extends StatefulWidget {
+class TextFieldDynom extends StatefulWidget {
   final String hintText;
-  const TextFieldWidget({super.key, required this.hintText});
+  const TextFieldDynom({super.key, required this.hintText});
 
   @override
-  State<TextFieldWidget> createState() => _TextFieldWidgetState();
+  State<TextFieldDynom> createState() => _TextFieldDynomState();
 }
 
-class _TextFieldWidgetState extends State<TextFieldWidget> {
+class _TextFieldDynomState extends State<TextFieldDynom> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Container(
-        height: 46,
-        width: MediaQuery.of(context).size.width * 0.8,
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(
-            Radius.circular(30),
-          ),
-          boxShadow: [
-            BoxShadow(
-                color: Colors.grey,
-                spreadRadius: 1,
-                blurRadius: 8,
-                offset: Offset(0, 3)),
-          ],
-        ),
-        child: const TextField(
-          decoration: InputDecoration(
-            hintText: widget.hintText,
-            filled: true,
-            fillColor: Colors.white,
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(30),
-              ),
-              borderSide: BorderSide(color: Colors.white),
+      child: Center(
+        child: Container(
+          height: 46,
+          width: MediaQuery.of(context).size.width * 0.8,
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(
+              Radius.circular(30),
             ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(30),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.grey,
+                  spreadRadius: 1,
+                  blurRadius: 8,
+                  offset: Offset(0, 3)),
+            ],
+          ),
+          child: const TextField(
+            maxLines: 1,
+            decoration: InputDecoration(
+              hintText: "Please Enter Text",
+              isDense: true,
+              contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+              filled: true,
+              fillColor: Colors.white,
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(30),
+                ),
+                borderSide: BorderSide(color: Colors.white),
               ),
-              borderSide: BorderSide(color: Colors.white),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(30),
+                ),
+                borderSide: BorderSide(color: Colors.white),
+              ),
             ),
           ),
         ),
